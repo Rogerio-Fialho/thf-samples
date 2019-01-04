@@ -1,0 +1,36 @@
+{
+  "name": "thf-samples",
+  "version": "3.1.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "gulp build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rogerio-Fialho/thf-samples.git"
+  },
+  "private": true,
+  "dependencies": {
+    "capitalize": "^2.0.0",
+    "core-js": "^2.6.0",
+    "del": "^3.0.0",
+    "fs-path": "0.0.24",
+    "handlebars": "^4.0.12",
+    "highlight.js": "^9.13.1",
+    "lint": "^1.1.2",
+    "ngx-highlightjs": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/highlight.js": "^9.12.3",
+    "@types/node": "^10.12.15",
+    "codelyzer": "~4.5.0",
+    "gulp": "4.0.0",
+    "gulp-filter": "^5.1.0",
+    "gulp-foreach": "^0.1.0",
+    "gulp-sync": "^0.1.4",
+    "gulp-tap": "^1.0.1",
+    "gulp-util": "^3.0.8",
+    "ts-node": "~7.0.1",
+    "typescript": "3.2.2"
+  }
+}
