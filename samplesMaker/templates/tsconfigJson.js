@@ -2,9 +2,8 @@ const handlebars = require('handlebars')
 const configuration = require('../configuration');
 const util = require('../util')
 
-module.exports = {
-  generateTsconfigJson: function (sampleName) {
-    const moduleSource = `{
+this.generateTsconfigJson = sampleName => {
+  const moduleSource = `{
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
@@ -27,16 +26,14 @@ module.exports = {
   }
 }`;
 
-    const moduleTemplate = handlebars.compile(moduleSource);
-    let moduleContent = moduleTemplate({
-      sampleName: sampleName
-    });
+  const moduleTemplate = handlebars.compile(moduleSource);
+  let moduleContent = moduleTemplate({
+    sampleName: sampleName
+  });
 
-    util.writeFile(`${configuration.outputSamplesFolder}/sample-${sampleName}/tsconfig.json`, moduleContent, result => {
-      if (result) {
-        console.error(`error`.red + ':   ', `Erro ao salvar arquivo sample-${sampleName}/tsconfig.json: ${result.message}`);
-      }
-    });
-  }
-
+  util.writeFile(`${configuration.outputSamplesFolder}/sample-${sampleName}/tsconfig.json`, moduleContent, result => {
+    if (result) {
+      console.error(`error`.red + ':   ', `Erro ao salvar arquivo sample-${sampleName}/tsconfig.json: ${result.message}`);
+    }
+  });
 }

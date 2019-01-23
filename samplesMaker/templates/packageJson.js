@@ -17,9 +17,8 @@ const tsNodeVersion = devDependencies['ts-node'];
 const tsLintVersion = devDependencies.tslint;
 const typescriptVersion = devDependencies.typescript;
 
-module.exports = {
-  generatePackageJson: function (sampleName) {
-    const moduleSource = `{
+this.generatePackageJson = sampleName => {
+  const moduleSource = `{
   "name": "{{sampleName}}",
   "version": "{{version}}",
   "scripts": {
@@ -56,28 +55,26 @@ module.exports = {
   }
 }`;
 
-    const moduleTemplate = handlebars.compile(moduleSource);
-    let moduleContent = moduleTemplate({
-      sampleName: sampleName,
-      version: version,
-      angularVersion: angularVersion,
-      rxjsVersion: rxjsVersion,
-      coreJsVersion: coreJsVersion,
-      zoneJsVersion: zoneJsVersion,
-      angularDevkitVersion: angularDevkitVersion,
-      typesNodeVersion: typesNodeVersion,
-      codelizerVersion: codelizerVersion,
-      protractorVersion: protractorVersion,
-      tsNodeVersion: tsNodeVersion,
-      tsLintVersion: tsLintVersion,
-      typescriptVersion: typescriptVersion
-    });
+  const moduleTemplate = handlebars.compile(moduleSource);
+  let moduleContent = moduleTemplate({
+    sampleName: sampleName,
+    version: version,
+    angularVersion: angularVersion,
+    rxjsVersion: rxjsVersion,
+    coreJsVersion: coreJsVersion,
+    zoneJsVersion: zoneJsVersion,
+    angularDevkitVersion: angularDevkitVersion,
+    typesNodeVersion: typesNodeVersion,
+    codelizerVersion: codelizerVersion,
+    protractorVersion: protractorVersion,
+    tsNodeVersion: tsNodeVersion,
+    tsLintVersion: tsLintVersion,
+    typescriptVersion: typescriptVersion
+  });
 
-    util.writeFile(`${configuration.outputSamplesFolder}/sample-${sampleName}/package.json`, moduleContent, result => {
-      if (result) {
-        console.error(`error`.red + ':   ', `Erro ao salvar arquivo sample-${sampleName}/package.json: ${result.message}`);
-      }
-    });
-  }
-
+  util.writeFile(`${configuration.outputSamplesFolder}/sample-${sampleName}/package.json`, moduleContent, result => {
+    if (result) {
+      console.error(`error`.red + ':   ', `Erro ao salvar arquivo sample-${sampleName}/package.json: ${result.message}`);
+    }
+  });
 }

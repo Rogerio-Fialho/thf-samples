@@ -2,9 +2,8 @@ const handlebars = require('handlebars')
 const configuration = require('../configuration');
 const util = require('../util')
 
-module.exports = {
-  generateAngularJson: function (sampleName) {
-    const moduleSource = `{
+module.exports.generateAngularJson = sampleName => {
+  const moduleSource = `{
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
@@ -83,16 +82,14 @@ module.exports = {
   "defaultProject": "demo"
 }`;
 
-    const moduleTemplate = handlebars.compile(moduleSource);
-    let moduleContent = moduleTemplate({
-      sampleName: sampleName
-    });
+  const moduleTemplate = handlebars.compile(moduleSource);
+  let moduleContent = moduleTemplate({
+    sampleName: sampleName
+  });
 
-    util.writeFile(`${configuration.outputSamplesFolder}/sample-${sampleName}/angular.json`, moduleContent, result => {
-      if (result) {
-        console.error(`error`.red + ':   ', `Erro ao salvar arquivo sample-${sampleName}/angular.json: ${result.message}`);
-      }
-    });
-  }
-
+  util.writeFile(`${configuration.outputSamplesFolder}/sample-${sampleName}/angular.json`, moduleContent, result => {
+    if (result) {
+      console.error(`error`.red + ':   ', `Erro ao salvar arquivo sample-${sampleName}/angular.json: ${result.message}`);
+    }
+  });
 }
